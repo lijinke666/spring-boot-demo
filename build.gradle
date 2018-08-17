@@ -25,10 +25,10 @@ repositories {
 
 
 dependencies {
-//   compile('org.springframework.boot:spring-boot-starter-data-jpa')
+   compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('org.springframework.boot:spring-boot-devtools')
-//    runtime('mysql:mysql-connector-java')
+    runtime('mysql:mysql-connector-java')
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
