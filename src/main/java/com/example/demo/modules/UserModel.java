@@ -7,9 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
-@Entity
-@Table(name = "user")      //jpa 提供的注解 标识表名叫什么
+@Data // 添加 getter setter toString hashCode 等方法
+@Entity // 数据库实体
+@Table(name = "user")      // 标识表名叫什么
 public class UserModel {
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id 自增长
