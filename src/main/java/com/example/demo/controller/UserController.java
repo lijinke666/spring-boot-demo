@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.modules.User;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.service.UserService;
 import com.example.demo.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 // Controller => Service (implement interface) => Repository
 
@@ -20,5 +20,10 @@ public class UserController {
     @GetMapping("/users")
     public List<User> getUsers() {
         return userService.getUser();
+    }
+
+    @GetMapping("/users/{id}")
+    public Optional<User> getUserById(@PathVariable Integer id) {
+        return userService.getUserById(id);
     }
 }
