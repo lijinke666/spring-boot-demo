@@ -1,16 +1,14 @@
 package com.example.demo.modules;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Data // 添加 getter setter toString hashCode 等方法
 @Entity // 数据库实体
 @Table(name = "user")      // 标识表名叫什么
-public class UserModel {
+public class User {
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id 自增长
     @Column(name = "id")
@@ -26,5 +24,6 @@ public class UserModel {
     private String phone;
 
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
 }
