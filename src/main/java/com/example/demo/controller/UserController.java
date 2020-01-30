@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.modules.User;
 import com.example.demo.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,11 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping("/users")
-    public List<User> getUsers() {
-        return userService.getUser();
+    public Page<User> getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
+                               @RequestParam(value = "size", defaultValue = "5") int size
+            ) {
+
+        return userService.getUsers(page, size);
     }
 
     @GetMapping("/users/{id}")
