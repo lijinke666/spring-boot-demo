@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -45,5 +46,20 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
+    }
+    
+    @PostMapping("/users/upload")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public String upload(@RequestParam("file")  MultipartFile file) {
+        System.out.println(file);
+        if(file.isEmpty()) {
+            throw new HTTPException(400);
+        }
+        String contentType = file.getContentType();
+        String originalFilename = file.getOriginalFilename();
+        long size = file.getSize();
+        System.out.println(String.format("文件上传：类型:%s, 名称：%s, 大小: %s",contentType, originalFilename,size));
+        return "上传成功";
     }
 }
