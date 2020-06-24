@@ -16,6 +16,7 @@
     - 自定义 http status code
     - 分页
 
+- [ ] swagger 接口文档
 - [ ] 权限
 - [ ] 日志
 - [ ] 测试
