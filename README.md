@@ -16,10 +16,10 @@
     - 自定义 http status code
     - 分页
 
-- [ ] 错误处理
+- [x] 错误处理
 - [ ] swagger 接口文档
 - [ ] 权限
-- [ ] 日志
+- [x] 日志
 - [ ] 测试
 - [ ] redis 缓存
 - [ ] docker 部署

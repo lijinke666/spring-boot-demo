@@ -8,14 +8,14 @@ spring:
     password: 123456
 
   jpa:
-    properties:
-      hibernate:
-        order_inserts: true
-        order_updates: true
-        jdbc:
-          batch_size: 100
-        temp:
-          use_jdbc_metadata_defaults: false
-    open-in-view: true
+#    properties:
+#      hibernate:
+#        order_inserts: true
+#        order_updates: true
+#        jdbc:
+#          batch_size: 100
+#        temp:
+#          use_jdbc_metadata_defaults: false
+#    open-in-view: true
     show-sql: true
 

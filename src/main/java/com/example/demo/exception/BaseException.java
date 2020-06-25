@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 // 业务相关的异常
+// Runtime的异常会进行事务回滚
 
 @Getter
 public class BaseException extends RuntimeException {

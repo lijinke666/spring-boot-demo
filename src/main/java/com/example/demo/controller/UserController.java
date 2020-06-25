@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.xml.ws.http.HTTPException;
 import java.util.Optional;
 
 // Controller => Service (implement interface) => Repository
@@ -46,7 +47,7 @@ public class UserController {
     public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
     }
-    
+
     @PostMapping("/users/upload")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
