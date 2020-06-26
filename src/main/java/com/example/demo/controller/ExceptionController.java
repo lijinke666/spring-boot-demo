@@ -28,7 +28,7 @@ public class ExceptionController {
 
     @GetMapping("/baseException")
     public void throwException4() {
-        throw new BaseException(HttpStatus.BAD_REQUEST, ErrorCode.CUSTOM_ERROR, "今天没吃饭");
+        throw new BaseException(HttpStatus.BAD_REQUEST, ErrorCode.BASE_EXCEPTION, "今天没吃饭");
     }
 
     @GetMapping("/baseException/details")

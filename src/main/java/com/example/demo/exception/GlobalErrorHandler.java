@@ -5,11 +5,14 @@ import com.example.demo.controller.ExceptionController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.Map;
 
 // @ControllerAdvice 声明全局处理 assignableTypes 指定只处理特定的类
 // @ControllerAdvice(assignableTypes = {ExceptionController.class})
@@ -33,10 +36,29 @@ public class GlobalErrorHandler {
 //        return null;
 //    }
 
+    // 捕获自定义业务异常
     @ExceptionHandler(value = BaseException.class)
     public ResponseEntity<ErrorResponse> baseExceptionHandler(BaseException e) {
-        log.error("@@@ {}", "22", e);
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.CUSTOM_ERROR, e.getMessage(), e.getDetails());
-        return ResponseEntity.status(e.getHttpStatus()).body(errorResponse);
+        log.error("BaseException {}", "->", e);
+        return this.getResponseEntity(e.getHttpStatus(), ErrorCode.BASE_EXCEPTION, e.getMessage(), e.getDetails());
+    }
+
+    // 捕获参数错误
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+        log.error("MethodArgumentNotValidException {}", "->" , e);
+        // 将哪些参数错了 组成 key value 的形式 告诉前端
+        Map<String, String> errorDetails = new HashMap<>();
+        e.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errorDetails.put(fieldName, errorMessage);
+        });
+        return this.getResponseEntity(HttpStatus.BAD_REQUEST, ErrorCode.METHOD_ARGUMENT_NOT_VALID, "参数错误", errorDetails);
+    }
+
+    private ResponseEntity<ErrorResponse> getResponseEntity(HttpStatus httpStatus, int errorCode, String message, Object details) {
+        ErrorResponse errorResponse = new ErrorResponse(errorCode, message, details);
+        return ResponseEntity.status(httpStatus).body(errorResponse);
     }
 }

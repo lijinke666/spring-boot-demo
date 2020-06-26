@@ -5,6 +5,7 @@ import com.example.demo.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 // Controller => Service (implement interface) => Repository
 
 @RestController
+@Validated // 校验方法参数
 public class UserController {
     @Autowired       // 依赖注入
     private UserServiceImpl userService;
@@ -28,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public Optional<User> getUserById(@PathVariable Integer id) {
+    public Optional<User> getUserById(@PathVariable("id") Integer id) {
         return userService.getUserById(id);
     }
 
@@ -44,7 +46,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable Integer id) {
+    public void deleteUser(@PathVariable("id") Integer id) {
         userService.deleteUser(id);
     }
 
