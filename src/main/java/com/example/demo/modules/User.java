@@ -18,7 +18,7 @@ public class User {
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id 自增长
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "username", nullable = false)
     @Size(min = 2, max = 10)
