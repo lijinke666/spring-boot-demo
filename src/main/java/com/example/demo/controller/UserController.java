@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.modules.User;
 import com.example.demo.service.UserServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -17,11 +19,13 @@ import java.util.Optional;
 
 @RestController
 @Validated // 校验方法参数
+@Api(tags = "用户")
 public class UserController {
     @Autowired       // 依赖注入
     private UserServiceImpl userService;
 
     @GetMapping("/users")
+    @ApiOperation("获取所有用户")
     public Page<User> getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
                                @RequestParam(value = "size", defaultValue = "5") int size
             ) {
@@ -30,22 +34,26 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
+    @ApiOperation("获取单个用户")
     public Optional<User> getUserById(@PathVariable("id") Integer id) {
         return userService.getUserById(id);
     }
 
     @PostMapping("/users")
     @ResponseStatus(code = HttpStatus.CREATED)
+    @ApiOperation("创建单个用户")
     public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
     }
 
     @PutMapping("/users")
+    @ApiOperation("更新单个用户")
     public User updateUser(@Valid @RequestBody User user) {
         return userService.updateUser(user);
     }
 
     @DeleteMapping("/users/{id}")
+    @ApiOperation("删除单个用户")
     public void deleteUser(@PathVariable("id") Integer id) {
         userService.deleteUser(id);
     }
@@ -53,6 +61,7 @@ public class UserController {
     @PostMapping("/users/upload")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
+    @ApiOperation("上传")
     public String upload(@RequestParam("file")  MultipartFile file) {
         System.out.println(file);
         if(file.isEmpty()) {

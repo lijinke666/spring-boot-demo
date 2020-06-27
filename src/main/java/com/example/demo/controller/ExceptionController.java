@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.common.ErrorCode;
 import com.example.demo.exception.BaseException;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/exception")
+@Api(tags = "异常测试")
 public class ExceptionController {
 
     @GetMapping("/illegalAccessException")
