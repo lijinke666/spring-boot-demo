@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-@RunWith()
+@AutoConfigurationPackage
 @SpringBootTest
 public class ExceptionTest {
     @Autowired
