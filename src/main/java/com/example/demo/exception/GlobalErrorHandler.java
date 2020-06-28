@@ -21,21 +21,6 @@ import java.util.Map;
 @Slf4j
 public class GlobalErrorHandler {
 
-    // 捕获所有异常
-//    @ExceptionHandler(value = Exception.class)
-//    public ResponseEntity<ErrorResponse> exceptionHandler(Exception e) {
-//        if(e instanceof IllegalAccessException) {
-//            // 用ErrorResponse包裹下, 只返回需要的信息
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(new IllegalAccessException("参数错误")));
-//        }
-//
-//        if(e instanceof ResourceNotFoundException) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(new ResourceNotFoundException("未找到对应资源")));
-//        }
-//
-//        return null;
-//    }
-
     // 捕获自定义业务异常
     @ExceptionHandler(value = BaseException.class)
     public ResponseEntity<ErrorResponse> baseExceptionHandler(BaseException e) {
