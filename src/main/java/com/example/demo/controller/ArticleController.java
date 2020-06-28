@@ -54,4 +54,12 @@ public class ArticleController {
         articleService.deleteOne(id);
     }
 
+    @GetMapping("/articlesUser")
+    @ApiOperation("获取文章和作者")
+    public Page<Article> getAllWithUser(@RequestParam(value = "page", defaultValue = "1") int page,
+                                        @RequestParam(value = "size", defaultValue = "5") int size) {
+
+        return articleService.getAllWithUser(page, size);
+    }
+
 }
