@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.ArticleDTO;
 import com.example.demo.modules.Article;
 import com.example.demo.modules.User;
 import com.example.demo.service.ArticleService;
@@ -56,8 +57,8 @@ public class ArticleController {
 
     @GetMapping("/articlesUser")
     @ApiOperation("获取文章和作者")
-    public Page<Article> getAllWithUser(@RequestParam(value = "page", defaultValue = "1") int page,
-                                        @RequestParam(value = "size", defaultValue = "5") int size) {
+    public Page<ArticleDTO> getAllWithUser(@RequestParam(value = "page", defaultValue = "1") int page,
+                                           @RequestParam(value = "size", defaultValue = "5") int size) {
 
         return articleService.getAllWithUser(page, size);
     }

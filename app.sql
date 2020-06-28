@@ -14,7 +14,5 @@ create table article
     primary key,
   title   varchar(20) not null,
   content text        not null,
-  userId  int         not null,
-  constraint FK_636f17dadfea1ffb4a412296a28
-  foreign key (userId) references user (id)
+  user_id  int         not null,
 );

@@ -1,5 +1,6 @@
 package com.example.demo.modules;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "article")
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +32,7 @@ public class Article {
     @NotBlank
     private String content;
 
-    @Column(name = "userId", nullable = false)
+    @Column(name = "user_id", nullable = false)
     @NotBlank
     private int userId;
 }

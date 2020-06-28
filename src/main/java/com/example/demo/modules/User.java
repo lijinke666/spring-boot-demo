@@ -21,7 +21,7 @@ public class User {
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id 自增长
     @Column(name = "id")
-    private long id;
+    private int id;
 
     @Column(name = "username", nullable = false)
     @Length(min = 2, max = 10, message = "用户名需要2-10个字符")
